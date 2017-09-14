@@ -1,0 +1,31 @@
+<ion-view>
+  <ion-nav-title>{{page.title}}</ion-nav-title>
+  <ion-content class="has-header">
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="refresh()"></ion-refresher>
+
+    <div ng-show="page.loading">loading...</div>
+    <div not-found ng-show="(categories && categories.length == 0) && !page.loading"></div>
+    <ion-list>
+      <a class="item item-icon-right" ng-repeat="cat in categories" ng-click="catItemClicked(cat)" href="{{cat.has_children=='0'?'#/app/posts/' + cat.id : '#app/categories/' + cat.id}}">
+        {{cat.name}}
+        <i class="icon ion-ios-arrow-right"></i>
+      </a>
+    </ion-list>
+
+    <div class="p-10 text-center my-block" ng-show="categories" ng-controller="BlocksCtrl">
+            <div class="list" >
+                <div class="card p-10" ng-repeat="block in blocks" ng-click="blockClicked(block)">
+                    <h5 class="pb-10 b-b" ng-show="block.show_title">{{block.title}}</h5>
+                    <div class="" ng-bind-html="block.description" ng-show="block.show_description"></div>
+                    <span class="text-calm">Read more...</span>
+                </div>
+            </div>
+           
+        </div>
+        
+    <ion-infinite-scroll ng-if="page.size > 0 && page.current != page.count" immediate-check="false" on-infinite="loadMore()" distance="1%">
+        </ion-infinite-scroll>
+  </ion-content>
+</ion-view>
+<!-- href="{{cat.children=='0'?'#/app/posts?catId=' + cat.id : '#app/categories/' + cat.id}}""  ui-sref="app.category({parentId:cat.id})" -->
+<!--  -->

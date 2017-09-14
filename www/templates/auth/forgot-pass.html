@@ -1,0 +1,25 @@
+<div class="mb-40 text-left">
+  <a class="button icon-left ion-chevron-left button-clear button-light" ui-sref="auth.login">Back to logIn</a>
+</div>
+
+<div class="auth-box">
+    <div class="hero mt-10 mb-10">
+            <div class="hero-img">
+                <img src="img/logo.png" class="w-200">
+            </div>
+
+            <div class="hero-subtitle">Please enter your email address to reset your password.</div>
+    </div>
+
+    <form ng-submit="reset(resetform.$valid)" name="resetform" novalidate>
+        <div class="list b-0">
+            <label class="item item-input item-floating-label" ng-class="{'error ': submitted && !resetform.email.$valid  }">
+              <span class="input-label">Email</span>
+              <input type="text" ng-model="user.email" name="email" placeholder="Email" required/>
+            </label>
+        </div>
+        
+        <button class="button button-full button-assertive" type="submit">Send New Password</button>
+    </form>
+
+</div>

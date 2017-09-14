@@ -1,0 +1,36 @@
+<div class="auth-box">
+    <div class="hero mt-10 mb-10">
+            <div class="hero-img">
+                <img src="img/logo.png" class="w-200">
+            </div>
+    </div>
+
+    <form ng-submit="login(loginform.$valid)" name="loginform" novalidate>
+        <div class="list b-0">
+            <label class="item item-input" ng-class="{'input-label-error ': submitted && !loginform.email.$valid  }">
+              <input type="text" ng-model="user.email" name="email" placeholder="Email" required/>
+            </label>
+            <label class="item item-input" ng-class="{'input-label-error ': submitted && !loginform.password.$valid  }">
+              <input type="password" ng-model="user.password" name="password" placeholder="Password" required/>
+            </label>
+
+            <br />
+            <a ui-sref="auth.forgot-pass" class="md-body-1 assertive pr-10 pull-right">Forgot password ?</a>
+            <br />
+        </div>
+        
+
+        <button class="button button-full button-assertive" type="submit">Login</button>
+    </form>
+
+</div>
+<br/> 
+<div class="mt-40 text-center text-light m-auto" style="max-width: 500px;">
+    <h4 class="text-dark text-fat" ui-sref="auth.signup">Don't have an account?</h4>
+    <a class="button button-calm button-block" ui-sref="auth.signup">Sign Up</a>
+</div>
+
+
+<br/>
+
+<a class="button button-royal button-block" ui-sref="auth.help">Why should I Sign Up?</a>

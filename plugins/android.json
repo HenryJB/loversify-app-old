@@ -1,0 +1,70 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "com.verso.cordova.clipboard": {
+            "PACKAGE_NAME": "com.loversify.loversify"
+        },
+        "cordova-plugin-admobpro": {
+            "PACKAGE_NAME": "com.loversify.loversify"
+        },
+        "cordova-plugin-apprate": {
+            "PACKAGE_NAME": "com.loversify.loversify"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.loversify.loversify"
+        },
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.loversify.loversify"
+        },
+        "cordova-plugin-datepicker": {
+            "PACKAGE_NAME": "com.loversify.loversify"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.loversify.loversify"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.loversify.loversify"
+        },
+        "cordova-plugin-image-picker": {
+            "PACKAGE_NAME": "com.loversify.loversify"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.loversify.loversify"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.loversify.loversify"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.loversify.loversify"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.loversify.loversify"
+        },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "com.loversify.loversify"
+        },
+        "cordova.plugins.diagnostic": {
+            "PACKAGE_NAME": "com.loversify.loversify"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.loversify.loversify"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-extension": {
+            "PACKAGE_NAME": "com.loversify.loversify"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.loversify.loversify"
+        },
+        "cordova-plugin-globalization": {
+            "PACKAGE_NAME": "com.loversify.loversify"
+        }
+    }
+}

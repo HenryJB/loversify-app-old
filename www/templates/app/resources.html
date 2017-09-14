@@ -1,0 +1,16 @@
+<ion-view >
+  <ion-nav-title>{{page.title}}</ion-nav-title>
+  <ion-content>
+    <div class="b-b padding mt-10" ng-show="resource">
+    	<h3 class="text-capitalize text-thin">Resources</h3>
+    	<div class="text-muted" ng-bind-html="resource.description"></div>
+    </div>
+    <ion-list>
+      <a class="item item-icon-right" ng-repeat="item in resources" ng-click="itemClicked(item)">
+        {{item.title}}
+        <i class="icon ion-ios-arrow-right"></i>
+      </a>
+
+    </ion-list>
+  </ion-content>
+</ion-view>

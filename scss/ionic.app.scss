@@ -1,0 +1,544 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+*/
+
+$light: #fff !default;
+$stable: #f8f8f8 !default;
+$positive: #387ef5 !default;
+$calm: #11c1f3 !default;
+$balanced: #33cd5f !default;
+$energized: #ffc900 !default;
+$assertive: #ef473a !default;
+$royal: #886aea !default;
+$dark: #444 !default;
+
+//$primary : #3F4E62;
+
+$positive: rgb(204, 0, 0) !default;
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+
+@import "variables";
+@import "www/lib/ionic/scss/ionic";
+@import "mixins";
+@import "misures";
+@import "rewrite";
+
+body {}
+
+.bar-custom {
+    position: relative;
+    height: auto;
+
+    .title {
+        position: relative;
+        height: auto;
+        text-align: center;
+        width: 100%;
+        line-height: 26px;
+        white-space: normal;
+    }
+}
+
+#page-loader {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: -30px;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    text-align: center;
+    z-index: 999;
+
+    .icon {
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        text-align: center;
+        text-overflow: ellipsis;
+        font-size: 15px;
+        position: absolute;
+        left: 50%;
+        margin-left: -30px;
+        top: 50%;
+        margin-top: -30px;
+
+        @include border-radius(5px);
+    }
+}
+
+.popover {
+    height: auto;
+
+    .popover-arrow {}
+}
+
+.accordion {
+    .item {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        width: 100%;
+        text-align: left;
+        border: none;
+        outline: none;
+        transition: 0.4s;
+
+        &.active {
+            background-color: #ddd;
+        }
+    }
+
+    .item-accordion {
+        padding: 10px;
+        background-color: #fff;
+        border-left: 3px solid $calm;
+    }
+}
+
+.act-btn {
+    &.has-footer {
+        margin-bottom: 0px;
+    }
+}
+
+.hero {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 10px;
+
+    .hero-title {
+        font-size: 22px;
+        font-weight: 300;
+        line-height: 26px;
+        margin-left: 9px;
+        text-transform: none;
+        letter-spacing: normal;
+        z-index: 9;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+        margin-left: 9px;
+        margin-top: 10px;
+        z-index: 9;
+
+        &::before {
+            content: "";
+        }
+
+        &::after {
+            content: "";
+        }
+    }
+
+    &.hero-small {
+        min-height: 25% !important;
+    }
+
+    &.hero-header {
+        min-height: 150px !important;
+        margin-top: -5px;
+
+        img.hero-title-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+    }
+}
+
+.sidebar-profile {
+    height: 150px;
+    position: relative;
+    background-color: $assertive;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-image: url(../img/user-profile-bg.jpg);
+
+    .sidebar-profile-avatar {
+        width: 64px;
+        height: 64px;
+        position: absolute;
+        left: 16px;
+        top: 25px;
+
+        > img {
+            width: 100%;
+            height: 100%;
+
+            @include border-radius(50%);
+        }
+    }
+
+    .sidebar-profile-title {
+        color: #fff;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.2;
+        margin: 0 0 0 16px;
+        position: absolute;
+        bottom: 20px;
+        left: 5px;
+        text-shadow: 1px 1px rgba(0, 0, 0, 0.25) !important;
+    }
+}
+
+.page {
+    margin-bottom: 0px;
+
+    .profile-avatar {
+        width: 100px;
+        height: 100px;
+        position: relative;
+        margin: auto;
+        overflow: hidden;
+
+        .floating-avatar {
+            position: absolute;
+            bottom: -50px;
+            left: 20px;
+        }
+
+        .overlay {
+            opacity: .3;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            transition: all .3s ease;
+
+            input {
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 0;
+                top: 0;
+                z-index: 5;
+                width: 100%;
+                height: 100%;
+            }
+
+            > span {
+                display: inline-block;
+                margin-top: 40%;
+            }
+        }
+
+        img {
+            height: 100%;
+        }
+    }
+
+    &.page-welcome {
+        .page-content {
+            overflow: hidden;
+
+            img {
+                max-width: 100%;
+            }
+        }
+    }
+
+    &.page-auth {
+        background-color: #fff;
+
+        .list.b-0 {
+            a.item {
+                border-right: none;
+                border-left: none;
+
+                &:first-child {
+                    border-top: none;
+                }
+
+                &:last-child {
+                    border-bottom: none;
+                }
+            }
+
+            label.item {
+                border-top: 0;
+                border-left: 0;
+                border-right: 0;
+            }
+        }
+
+        .auth-box {
+            max-width: 500px;
+            margin: auto;
+
+            .list{
+                >label{
+                    margin-bottom: 1px;
+                }
+            }
+        }
+    }
+
+    &.page-profile {
+        .profile-header {
+            position: relative;
+            color: $light;
+            height: 250px;
+
+            .act-btn {
+                position: absolute;
+                right: 0px;
+                bottom: -25px;
+            }
+
+            img {
+                height: 100%;
+                width: 100%;
+                -moz-transform: scaleX(-1);
+                -o-transform: scaleX(-1);
+                -webkit-transform: scaleX(-1);
+                transform: scaleX(-1);
+                filter: FlipH;
+                -ms-filter: FlipH;
+            }
+
+            h4 {
+                color: $light;
+                margin: 2px 0 0;
+            }
+
+            .contact.profile-user {
+                position: absolute;
+                bottom: 0;
+                left: 20px;
+                right: 0;
+
+                p {
+                    font-size: 12px;
+                    opacity: .85;
+                    margin-bottom: 15px;
+                }
+            }
+        }
+
+        .list {
+            a.item {
+                border-right: none;
+                border-left: none;
+
+                &:first-child {
+                    border-top: none;
+                }
+
+                &:last-child {
+                    border-bottom: none;
+                }
+            }
+
+            label.item {
+                border-top: 0;
+                border-left: 0;
+                border-right: 0;
+                margin-bottom: 1px;
+
+                input[disabled], input[readonly]:not(.cloned-text-input), select[disabled], select[readonly], textarea[disabled], textarea[readonly]:not(.cloned-text-input) {
+                    background-color: inherit;
+                }
+            }
+        }
+
+        .activity {
+            margin: 0 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+
+            p {
+                margin: 0;
+            }
+
+            .row {
+                padding-left: 20px;
+                border-left: 2px solid #eee;
+                margin-left: 50px;
+
+                .col {
+                    padding: 0 0.6rem;
+                }
+            }
+
+            .contact {
+                margin-bottom: 20px;
+                position: relative;
+                padding: 16px 16px 16px 65px;
+
+                img {
+                    position: absolute;
+                    top: 16px;
+                    left: 0;
+                    width: 45px;
+                    height: 45px;
+                    border-radius: 50%;
+                }
+
+                span {
+                    font-size: 12px;
+                    font-weight: 300;
+                }
+
+                .date,
+                .icon {
+                    position: absolute;
+                    top: 18px;
+                    left: 0;
+                }
+
+                .icon {
+                    font-size: 24px;
+                }
+
+                .dot {
+                    width: 20px;
+                    height: 20px;
+                    background-color: $light;
+                    position: absolute;
+                    top: 17px;
+                    left: -42px;
+                    border-radius: 50%;
+                    border: 4px solid $positive;
+                }
+            }
+
+            .friends {
+                img {
+                    display: inline-block;
+                    position: static;
+                    width: 30px;
+                    height: 30px;
+                    margin-right: 5px;
+                    margin-top: 8px;
+                }
+            }
+        }
+
+        .advance {
+            .item {
+                &.item-toggle {
+                    dynamic-input {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    &.page-post-content {
+        .post-content {
+            text-align: center;
+            margin-bottom: 20px;
+
+            @include user-select;
+
+            .description {
+                font-size: 16px;
+                font-weight: 300;
+                line-height: 23px;
+            }
+
+            .post-content-area {
+                .item {
+                    position: relative;
+                    overflow: hidden;
+
+                    h1,h2,h3,h4,h5{
+                        white-space: normal;
+                    }
+
+                    img {
+                        max-width: 100%;
+                    }
+
+                    p {
+                        font-size: 16px;
+                        line-height: 27px;
+                        white-space: normal;
+                        margin-bottom: 12px;
+                    }
+                }
+            }
+        }
+
+        .my-block {
+            img {
+                max-width: 100%;
+            }
+        }
+    }
+
+    &.page-contact {
+        .list {
+            a.item {
+                border-right: none;
+                border-left: none;
+
+                &:first-child {
+                    border-top: none;
+                }
+
+                &:last-child {
+                    border-bottom: none;
+                }
+            }
+
+            label.item {
+                border-top: 0;
+                border-left: 0;
+                border-right: 0;
+                margin-bottom: 1px;
+
+                input[disabled], input[readonly]:not(.cloned-text-input), select[disabled], select[readonly], textarea[disabled], textarea[readonly]:not(.cloned-text-input) {
+                    background-color: inherit;
+                }
+            }
+        }
+    }
+
+    &.page-modal {
+        img {
+            max-width: 100%;
+        }
+    }
+}
+
+.alert {
+    padding: 10px 15px;
+    border-radius: 0;
+    border: 0;
+    border-left: 3px solid;
+    margin-bottom: 8px;
+
+    &.alert-danger {
+        background-color: lighten($assertive, 30%);
+        border-color: $assertive;
+    }
+
+    &.alert-big {
+        padding: 15px;
+    }
+
+    &.alert-dismissable {
+        padding-right: 35px;
+    }
+
+    &.notcloseable {
+        > .close {
+            display: none;
+        }
+    }
+}

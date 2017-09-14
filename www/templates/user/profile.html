@@ -1,0 +1,90 @@
+<ion-view>
+   <ion-nav-title>{{user.username}}</ion-nav-title>
+   <ion-content class="page page-profile has-header">
+      <div class="hero hero-header bg-assertive text-light shad">
+         <div class="hero-header">
+            <div class="profile-avatar">
+               <div class="overlay rounded" ng-click="takePic()" ng-class="{'loading' : is_uploading}">
+                  <span uib-tooltip="Change Picture">
+                     <div ng-show="is_uploading">Loading...</div>
+                     <i class="icon ion-edit light"></i>
+                  </span>
+               </div>
+               <img class="rounded avatar w-100" id="dp" error-src="img/avatar.jpg" data-ng-src="{{user.imageurl}}"  alt="">
+            </div>
+         </div>
+         <div class="hero-title">{{user.email}}</div>
+         <div class="hero-subtitle">...</div>
+      </div>
+      <div class="p-10  bg-light shad">
+         <form name="profileform"  >
+            <div class="list p-20 pb-0 mb-0">
+               <label class="item item-input item-floating-label" ng-class="{'error ': submitted && !profileform.firstname.$valid  }">
+               <span class="input-label">First Name</span>
+               <input type="text" name="firstname" ng-model="user.first_name" placeholder="First Name" required>
+               </label>
+               <label class="item item-input item-floating-label" ng-class="{'error ': submitted && !profileform.lastname.$valid  }">
+               <span class="input-label">Last Name</span>
+               <input type="text" name="lastname" ng-model="user.last_name" placeholder="Last Name" required>
+               </label>
+               <label class="item item-input item-floating-label">
+               <span class="input-label">Email</span>
+               <input type="text" ng-model="user.email" placeholder="Email">
+               </label>
+               <label class="item item-input item-floating-label">
+               <span class="input-label">Username</span>
+               <input type="text" ng-model="user.username" placeholder="Username">
+               </label>
+               <label class="item item-input item-floating-label">
+               <span class="input-label">Phone</span>
+               <input type="text" ng-model="user.phone" placeholder="Phone">
+               </label>
+               <label class="item item-input item-floating-label">
+               <span class="input-label">Birth Day </span>
+               <input type="text" ng-model="user.birthday"  ng-click="selectDate()" readonly="readonly">
+               </label>
+               <label class="item item-input item-select ">
+                  <span class="input-label">Gender</span>
+                  <select name="gender" ng-model="user.gender">
+                     <option >Select</option>
+                     <option value="male">Male</option>
+                     <option value="female">Female</option>
+                  </select>
+               </label>
+               <label class="item item-input item-select ">
+                  <span class="input-label">Relationship Status</span>
+                  <select name="gender" ng-model="user.relationship_status">
+                     <option value="single">Single</option>
+                     <option value="married">Married</option>
+                     <option value="divorced">Divorced</option>
+                     <option value="dating">Dating/In a relationship</option>
+                  </select>
+               </label>
+               <label class="item item-input item-select ">
+                  <span class="input-label">Country</span>
+                  <select name="country" ng-model="user.country">
+                     <option ng-repeat="item in countries" value="{{item.name}}">{{item.name}}</option>
+                  </select>
+               </label>
+            </div>
+            <div class="list p-20 pt-0 advance" ng-controller="AdvanceProfileCtrl">
+               <label class="item item-input">
+                <span class="input-label text-fat">Advance Options</span>
+               </label>
+
+               
+               <label ng-repeat="field in fields" class="item item-input" 
+                ng-class="{
+                  'item-stacked-label': (field.type == 'textbox'), 
+                  'item-select' : (field.type == 'select'), 
+                  'item-toggle' : (field.type == 'radio' || field.type == 'checkbox') 
+                }">
+                  <span class="input-label">{{field.name}}</span>
+                  <dynamic-input field="field" user="user.id" dowork="saveUserData(param)"></dynamic-input>
+               </label>
+            </div>
+            <button type="submit" class="button button-block button-calm" ng-disabled="page.disable" ng-click="save(profileform.$valid)">Save</button>
+         </form>
+      </div>
+   </ion-content>
+</ion-view>

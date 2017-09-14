@@ -1,0 +1,25 @@
+<ion-pane>
+    <ion-content class="page page-welcome p-10 has-footer">
+        <div class="hero">
+            <h2 class="hero-title">
+                Welcome To Loversify.
+            </h2>
+            <div class="mt-40 ml-10 mr-10 page-content">
+                <div ng-repeat="block in blocks" class="b-b mb-10">
+                    <h5 ng-show="block.show_title">{{block.title}}</h5>
+                    <div ng-bind-html="block.description" ng-show="block.show_description"></div>
+                    <div ng-bind-html="block.body" ng-show="block.show_body"></div>
+                </div>
+            </div>
+
+        </div>
+        
+
+
+    </ion-content>
+
+    <div class="bar bar-footer bar-assertive">
+        <button class="button button-clear button-block mt-0" ui-sref="app.categories">Continue</button>
+    </div>
+
+</ion-pane>

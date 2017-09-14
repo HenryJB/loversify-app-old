@@ -1,0 +1,58 @@
+
+
+<div class="alert alert-danger animated fadeIn" ng-show="registerError.username">{{registerError.username[0]}}</div>
+<div class="alert alert-danger animated fadeIn" ng-show="registerError.email">{{registerError.email[0]}}</div>
+
+<div class="auth-box">
+    <div class="hero mt-10 mb-10">
+            <div class="hero-img">
+                <img src="img/logo.png" class="w-200">
+            </div>
+    </div>
+
+    <form ng-submit="signup(signupform.$valid)" name="signupform" novalidate>
+        <div class="list b-0">
+            <label class="item item-input" ng-class="{'input-label-error ': submitted && !signupform.first_name.$valid  }">
+              <input type="text" ng-model="user.first_name" name="first_name" placeholder="First Name" required/>
+            </label>
+            <label class="item item-input" ng-class="{'input-label-error ': submitted && !signupform.last_name.$valid  }">
+              <input type="text" ng-model="user.last_name" name="last_name" placeholder="Last Name" required/>
+            </label>
+            <!-- <label class="item item-input">
+              <span class="input-label" ng-class="{'error ': submitted && !signupform.username.$valid  }">Username</span>
+              <input type="text" ng-model="user.username" name="username" placeholder="Username" required/>
+            </label> -->
+            <label class="item item-input" ng-class="{'input-label-error ': submitted && !signupform.email.$valid  }">
+              <input type="text" ng-model="user.email" name="email" placeholder="Email" required/>
+            </label>
+            <label class="item item-input" ng-class="{'input-label-error ': submitted && !signupform.password.$valid  }">
+              <input type="text" ng-model="user.password" name="password" placeholder="Password" required/>
+            </label>
+
+            
+
+            <label class="item item-input item-select">
+              <span class="input-label" ng-class="{'error ': submitted && !signupform.country.$valid  }">Country</span>
+              <select required ng-model="user.country" name="country">
+                <option ng-repeat="item in countries" value="{{item.name}}">{{item.name}}</option>
+              </select>
+            </label>
+
+        </div>
+
+        <!-- <div class="">
+            <ion-checkbox ng-model="reg.user.accept" class="b-0 text-small text-muted">
+                I agree to the <a ng-click='gotoTerms()'>Terms of Service</a> & <a ng-click='gotoTerms()'>Privacy Policy</a>
+            </ion-checkbox>
+        </div> -->
+
+        <div class="mt-20">
+            <button class="button button-block button-assertive" type="submit">Sign Up</button>
+        </div>
+    </form>
+</div>
+
+<div class="mt-40 text-center text-light m-auto" style="max-width: 500px;">
+    <h4 class="text-dark text-fat" ui-sref="auth.signup">Already a member?</h4>
+    <a class="button icon-left ion-chevron-left button-clear button-dark" ui-sref="auth.login">Back to logIn</a>
+</div>

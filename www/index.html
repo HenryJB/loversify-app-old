@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <!-- un-comment this code to enable service worker
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.log('Error', err));
+      }
+    </script>-->
+
+    <link rel="stylesheet" href="lib/angular-material/angular-material.min.css">
+
+    <link href="css/ionic.app.min.css" rel="stylesheet">
+    <!-- <link href="lib/ionic/css/ionic.css" rel="stylesheet"> -->
+    <link href="css/style.css" rel="stylesheet">
+    
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- Angular Material Dependencies -->
+    <script src="lib/angular-animate/angular-animate.min.js"></script>
+    <script src="lib/angular-aria/angular-aria.min.js"></script>
+
+    <!-- Angular Material-->
+    <script src="lib/angular-material/angular-material.min.js"></script>
+
+    <!-- Angular Resources -->
+    <script src="lib/angular-resource/angular-resource.min.js"></script>
+
+    <!-- ngCordova -->
+    <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+
+    <!-- services -->
+    <script src="js/services/appUser.js"></script>
+    <script src="js/services/appCategories.js"></script>
+    <script src="js/services/appPosts.js"></script>
+    <script src="js/services/appPostsContent.js"></script>
+    <script src="js/services/appResources.js"></script>
+    <script src="js/services/appPages.js"></script>
+    <script src="js/services/appBlocks.js"></script>
+    <script src="js/services/appUserFields.js"></script>
+    <script src="js/services/appUserFieldsData.js"></script>
+    <script src="js/services/picture.js"></script>
+    <script src="js/services/socialShare.js"></script>
+    <script src="js/services/adMob.js"></script>
+    <script src="js/services/alerts.js"></script>
+
+    <!-- controllers -->
+    <script src="js/controllers/main.js"></script>
+    <script src="js/controllers/auth.js"></script>
+    <script src="js/controllers/user.js"></script>
+
+    <!-- directives -->
+    <script src="js/directives/ifSref.js"></script>
+    <script src="js/directives/pageloader.js"></script>
+    <script src="js/directives/notfound.js"></script>
+    <script src="js/directives/postitem.js"></script>
+    <script src="js/directives/dynamicInput.js"></script>
+    <script src="js/directives/accordionitem.js"></script>
+    <script src="js/directives/errorSrc.js"></script>
+    <script src="js/directives/inAppLink.js"></script>
+    <script src="js/directives/compile.js"></script>
+
+    <!-- filters -->
+    <script src="js/filters/cut.js"></script>
+    <script src="js/filters/postParse.js"></script>
+
+    <script>
+        document.onclick = function (e) {
+            e = e ||  window.event;
+            var element = e.target || e.srcElement;
+
+            if (element.tagName == 'A') {
+
+               // e.preventDefault();
+
+                elem = angular.element(element);
+
+                if(typeof elem.attr('href') !== 'undefined'){
+
+                    var link = elem.attr('href');
+                    var substring = "http";
+
+                    if(link.includes(substring) )
+                        window.open(element.href, "_blank", "location=yes");
+                }
+                return false; // prevent default action and stop event propagation
+            }
+        
+        };
+    </script>
+
+  </head>
+  <body ng-app="starter">
+
+    <script id="app-popover.html" type="text/ng-template">
+        <ion-popover-view>
+            <ion-list>
+
+                <ion-item menu-close ui-sref="app.categories" ng-click="closePopover()">
+                    <i class="icon ion-ios-paper">&nbsp;</i> Posts
+                </ion-item>
+
+                <ion-item menu-close ui-sref="user.profile" ng-click="closePopover()">
+                    <i class="icon ion-person">&nbsp;</i> Profile
+                </ion-item>
+
+                <ion-item menu-close ui-sref="user.contact" ng-click="closePopover()">
+                    <i class="icon ion-compose">&nbsp;</i> Contact Us
+                </ion-item>
+
+            </ion-list>
+        </ion-popover-view>
+    </script>
+
+    <script id="app-search-modal.html" type="text/ng-template">
+      <ion-modal-view ng-controller="SearchCtrl">
+        <ion-header-bar class="bar bar-header bar-calm item-input-inset">
+            <label class="item-input-wrapper">
+                <i class="icon ion-ios-search placeholder-icon"></i>
+                <input type="search" placeholder="Search" ng-model="searchText" ng-change="searchTextChanged()">
+            </label>
+            <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
+        </ion-header-bar>
+        <ion-content>
+            <div class="text-center" ng-show="posts.length == 0 && searched">
+                <div not-found data-title="Oh, my Love!" data-message="Sorry, your search didn't return any result. Still, we can write it for you."></div>
+
+                <button class="button button-assertive mt-10" ui-sref="user.contact" ng-click="modal.hide()">Make a request</button>
+            </div>
+            <ion-list>
+              <post-item class="item pb-0" ng-repeat="post in posts" item="post" ui-sref="app.posts_content({postId : post.id})" ng-click="modal.hide()"></post-item>
+            </ion-list>
+        </ion-content>
+      </ion-modal-view>
+    </script>
+
+    <script id="app-notification-modal.html" type="text/ng-template">
+      <ion-modal-view ng-controller="NotificationCtrl">
+        <ion-header-bar class="bar bar-header bar-calm item-input-inset">
+            <button class="button icon-left ion-arrow-left-c button-clear" ng-click="modal.hide()">Back</button>
+            <h1 class="title">Notifications</h1>
+        </ion-header-bar>
+        <ion-content>
+            <div not-found data-title="Oh my Love!" data-message="Sorry your search didn't return any result. Still we can write it for you"></div>
+        </ion-content>
+      </ion-modal-view>
+    </script>
+
+    <script id="app-help-item.html" type="text/ng-template">
+      <ion-modal-view>
+        <ion-header-bar class="bar bar-header bar-calm item-input-inset">
+            <button class="button icon-left ion-arrow-left-c button-clear" ng-click="modal.hide()">Back</button>
+            <h1 class="title">{{modalItem.title}}</h1>
+        </ion-header-bar>
+        <ion-content class="page page-modal">
+            <!-- <div not-found data-title="My love..." data-message="There is nothing here for you" ></div> -->
+            <div class="padding text-center">
+                
+                <div  ng-bind-html="modalItem.body"></div>
+            </div>
+            
+        </ion-content>
+      </ion-modal-view>
+    </script>
+    <!-- <ion-pane>
+      <ion-header-bar class="bar-stable">
+        <h1 class="title">Ionic Blank Starter</h1>
+      </ion-header-bar>
+      <ion-content>
+      </ion-content>
+    </ion-pane> -->
+
+    <ion-nav-view></ion-nav-view>
+    <div page-loader id="page-loader"></div>
+    
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<ion-view>
+    <ion-nav-title>{{page.title}}</ion-nav-title>
+    <ion-content class="page page-contact">
+
+  
+        <div class="b-0 mt-40">
+
+            <div class="text-muted pl-20 pr-20 text-center" ng-bind-html="pageContact.description"></div>
+
+            <form name="contactform">
+                <div class="list p-20">
+                    <label class="item item-input item-floating-label" ng-class="{'error ': contactform.title.$dirty &&  !contactform.title.$valid  }">
+                      <span class="input-label">Title</span>
+                      <input type="text" name="title" ng-model="contact.subject" placeholder="Title" required/>
+                    </label>
+                    <label class="item item-input item-floating-label" ng-class="{'error ': contactform.message.$dirty && !contactform.message.$valid  }">
+                      <span class="input-label">Message</span>
+                      <textarea name="message" ng-model="contact.body" rows="10" placeholder="Message" required></textarea>
+                    </label>
+
+                    <div>
+                        <button type="submit" class="button button-block button-calm" ng-disabled="submitted" ng-click="send(contactform.$valid)">{{submitted? 'sending....': 'Send'}}</button>
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,48 @@
+<ion-side-menu side="left">
+
+        <ion-content>
+
+            <div class="sidebar-profile">
+
+                <div class="sidebar-profile-avatar">
+                    <img class="sidebar-profile-avatar-img" error-src="img/avatar.jpg" ng-src="{{user.imageurl}}" id="sidebar-dp" alt="Avatar" />
+                </div>
+
+                <div class="sidebar-profile-title">{{user.first_name}} {{user.last_name}}</div>
+            </div>
+
+            <ion-list>
+
+                <ion-item menu-close class="b-0" ui-sref="app.categories">
+                    <i class="icon ion-ios-paper">&nbsp;</i> Posts
+                </ion-item>
+
+
+                <ion-item menu-close class="b-0" ui-sref="app.favorites">
+                    <i class="icon ion-android-favorite">&nbsp;</i> Favourites
+                </ion-item>
+
+                <ion-item menu-close class="b-0" ui-sref="app.resources">
+                    <i class="icon ion-fireball">&nbsp;</i> Resources
+                </ion-item>
+
+                <ion-item menu-close class="b-0" ui-sref="user.profile">
+                    <i class="icon ion-person">&nbsp;</i> Profile
+                </ion-item>
+
+                <!-- <ion-item menu-close class="b-0" ui-href="user.settings">
+                    <i class="icon ion-gear-a">&nbsp;</i> Settings
+                </ion-item> -->
+
+                <ion-item menu-close ui-sref="app.help">
+                    <i class="icon ion-help">&nbsp;</i> Help and Feedback
+                </ion-item>
+
+                <ion-item menu-close class="b-0" ng-click="logout()">
+                    <i class="icon ion-power">&nbsp;</i> Logout
+                </ion-item>
+
+            </ion-list>
+
+        </ion-content>
+    </ion-side-menu>

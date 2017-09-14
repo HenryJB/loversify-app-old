@@ -1,0 +1,17 @@
+<ion-view>
+    <ion-nav-title>{{page.title}}</ion-nav-title>
+    <ion-content>
+        <ion-refresher pulling-text="Pull to refresh..." on-refresh="refresh()">
+        </ion-refresher>
+        <div ng-show="posts.length == 0">
+            <div not-found></div>
+            <div class="text-center text-fat" >Use the Search or <a class="no-underline" ui-sref="user.contact">Contact Us.</a></div>
+        </div>
+
+        <ion-list>
+            <post-item class="item item-icon-right" ng-repeat="post in posts" item="post" ui-sref="app.posts_content({postId : post.id, userId: user.id})" ng-click="postClicked(post)"></post-item>
+        </ion-list>
+        <ion-infinite-scroll ng-if="page.size > 0 && page.current != page.count" immediate-check="false" on-infinite="loadMore()" distance="1%">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

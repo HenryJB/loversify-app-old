@@ -1,0 +1,65 @@
+<ion-view>
+    <ion-nav-title>{{page.title}}</ion-nav-title>
+
+    <ion-content class="page page-post-content">
+        <ion-refresher pulling-text="Pull to refresh..." on-refresh="refresh()">
+        </ion-refresher>
+        <div class="bar bar-header bar-custom b-b pl-10 pr-10">
+            <h1 class="title">{{post.title}} - Page {{page.current + 1}} </h1>
+        </div>
+
+        <div not-found data-title="My Dearest.." data-message="I hope things were not this broken" ng-show="!post.content"></div>
+
+
+        <div class="post-content pl-10 pr-10" ng-hide="!post.content">
+
+            <div class="description b-b p-10" ng-show="page.current == 0" ng-bind-html="post.description"></div>
+
+            <div class="post-content-area">
+
+                <div class="list mb-0 pb-5 b-b" >
+
+                    <div class="item b-0 pb-0 text-normal" compile="post.content| postParse"></div>
+                    
+                </div>
+                
+                <div class="b-b row" href="#">
+                    <button class="button button-clear button-calm col"  ng-click="like()">
+                        <i class="icon " ng-class="post.meta.is_like? 'ion-android-favorite' : 'ion-android-favorite-outline'"></i>
+                    </button>
+                    <button class="button button-clear button-calm col" ng-click="share()"><i class="icon ion-share"></i></button>
+                    <button class="button button-clear button-calm col" ng-click="copy()"><i class="icon ion-ios-copy"></i></button>
+                </div>
+
+            </div>
+
+
+            <div class="pl-10 pr-10">
+                <div class="button-bar">
+                    <button class="button button-calm icon-left ion-chevron-left" ng-disabled="page.current==0" ng-click="prev()">Prev</button>
+                    <button class="button button-calm icon-right ion-chevron-right" ng-disabled="page.current==(page.size -1)" ng-click="next()">Next</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="p-10 text-center my-block" ng-controller="BlocksCtrl">
+            <div class="list" >
+                <div class="card p-10" ng-repeat="block in blocks" ng-click="blockClicked(block)">
+                    <h5 class="pb-10 b-b" ng-show="block.show_title">{{block.title}}</h5>
+                    <div class="" ng-bind-html="block.description" ng-show="block.show_description"></div>
+                    <span class="text-calm">Read more...</span>
+                </div>
+            </div>
+           
+        </div>
+
+    </ion-content>
+
+    <!-- <div class="bar bar-footer bar-assertive" ng-show="posts.length > 0">
+        <button class="button button-clear mt-0" ng-disabled="page.current==1" ng-click="prev()">Prev</button>
+        <button class="button button-clear mt-0" ng-disabled="page.current==post.post_count" ng-click="next()">Next</button>
+    </div> -->
+    
+
+</ion-view>
